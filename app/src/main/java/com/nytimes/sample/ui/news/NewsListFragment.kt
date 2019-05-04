@@ -62,7 +62,8 @@ class NewsListFragment  @Inject constructor()
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
                     if (!pullToRefresh.isRefreshing() /*&& !mEndOfList*/) {
-                        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - 5 /*Constants.PAGINATION_MARGIN*/
+                        if (
+                            visibleItemCount + firstVisibleItemPosition >= totalItemCount - 3 /*Constants.PAGINATION_MARGIN*/
                             && firstVisibleItemPosition >= 0
                             && totalItemCount >= 10/* Constants.PAGE_SIZE*/
                         ) {
