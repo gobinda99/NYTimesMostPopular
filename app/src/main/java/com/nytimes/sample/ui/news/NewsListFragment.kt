@@ -1,5 +1,6 @@
 package com.gobinda.mvp.sample.ui.flightevent
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,8 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 import androidx.recyclerview.widget.RecyclerView
-
+import com.nytimes.sample.ui.news.DetailActivity
+import com.nytimes.sample.ui.news.DetailFragment
 
 
 /**
@@ -142,11 +144,13 @@ class NewsListFragment  @Inject constructor()
     }
 
     private fun showDetail(flight: Data) {
-        /*activity!!.supportFragmentManager.beginTransaction().run {
-            replace(R.id.container, FlightDetailFragment.getInstance(flight.id))
-            addToBackStack(null)
-            commit()
-        }*/
+//        activity!!.supportFragmentManager.beginTransaction().run {
+//            replace(R.id.container, DetailFragment())
+//            addToBackStack(null)
+//            commit()
+//        }
+
+        startActivity(Intent(activity,DetailActivity::class.java))
     }
 
 
