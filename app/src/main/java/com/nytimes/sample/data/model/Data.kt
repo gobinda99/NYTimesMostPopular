@@ -13,5 +13,5 @@ data class Data(
     val id : Int,
 
     @ColumnInfo(name = "flight_no")
-    @SerializedName("Flight Nr")
+    @SerializedName("Date")
     val flightNo: String?)

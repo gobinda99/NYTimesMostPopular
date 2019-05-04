@@ -9,7 +9,9 @@ import com.nytimes.sample.ui.BaseView
  */
 interface NewsContract {
     interface Presenter : BasePresenter<View> {
+        val pageCount : Int
         fun requestRefresh()
+        fun onLoadNextRequest()
     }
 
     interface View : BaseView<Presenter> {

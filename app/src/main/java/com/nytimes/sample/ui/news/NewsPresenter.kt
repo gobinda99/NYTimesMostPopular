@@ -19,46 +19,62 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
     private val disposable = CompositeDisposable()
     private lateinit var view: NewsContract.View
 
+    private var _pageCount = 0
+
+    override val pageCount: Int
+        get() = _pageCount
+
+
     override fun subscribe(view: NewsContract.View) {
         this.view = view
-        disposable.add(dbOrApi())
+//        disposable.add(dbOrApi())
     }
+
+
 
     override fun unSubscribe() {
         disposable.clear()
     }
 
     override fun requestRefresh() {
-        disposable.add(api())
+        disposable.add(api(true))
     }
 
 
 
+//
+//    private fun dbOrApi(): Disposable {
+//        return dataSource.database.flightEventDao().loadFlightEvents()
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                if (it.isNotEmpty()) {
+//                    view.showFlights(it)
+//                    view.showLoading(false)
+//                    _pageCount ++;
+//                } else {
+//                    api()
+//                }
+//
+//            }, { e -> Timber.e(e) })
+//    }
 
-    private fun dbOrApi(): Disposable {
-        return dataSource.database.flightEventDao().loadFlightEvents()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                if (it.isNotEmpty()) {
-                    view.showFlights(it)
-                    view.showLoading(false)
-                } else {
-                    api()
-                }
-
-            }, { e -> Timber.e(e) })
-    }
 
 
 
-
-    private fun api(): Disposable {
+    private fun api(refresh: Boolean): Disposable {
         view.showLoading(true)
         return dataSource.api.getData()
-            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                val flightDao = dataSource.database.flightEventDao()
+                view.showFlights(it)
+                view.showLoading(false)
+                if(refresh) {
+                    _pageCount = 1
+                } else {
+                    _pageCount++;
+                }
+                /*val flightDao = dataSource.database.flightEventDao()
                 flightDao.deleteAllFlightEvents()
                     .subscribe({
                         Timber.d("Flight Event delete succeed")
@@ -73,7 +89,7 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
                                     }, { e -> Timber.e(e) })
 
                             }, { e -> Timber.e(e) })
-                    }, { e -> Timber.e(e) })
+                    }, { e -> Timber.e(e) })*/
 
             }, { e ->
                 Observable.just(e)
@@ -87,4 +103,7 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
     }
 
 
+    override fun onLoadNextRequest() {
+        api(false)
+    }
 }

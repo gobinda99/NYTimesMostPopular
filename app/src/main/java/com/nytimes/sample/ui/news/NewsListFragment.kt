@@ -17,6 +17,9 @@ import kotlinx.android.synthetic.main.frag_news_list.*
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
+import androidx.recyclerview.widget.RecyclerView
+
+
 
 /**
  * This fragment class to display list of flight's event
@@ -49,6 +52,26 @@ class NewsListFragment  @Inject constructor()
             val manager = LinearLayoutManager(context)
             layoutManager = manager
             addItemDecoration(DividerItemDecoration(context,manager.orientation))
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val visibleItemCount = recyclerView.layoutManager!!.childCount
+                    val totalItemCount = recyclerView.layoutManager!!.itemCount
+                    val firstVisibleItemPosition =
+                        (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                    if (!pullToRefresh.isRefreshing() /*&& !mEndOfList*/) {
+                        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - 5 /*Constants.PAGINATION_MARGIN*/
+                            && firstVisibleItemPosition >= 0
+                            && totalItemCount >= 10/* Constants.PAGE_SIZE*/
+                        ) {
+                            presenter.onLoadNextRequest()
+                        }
+                    }
+                }
+            })
+
         }
 
         pullToRefresh.setOnRefreshListener {
@@ -66,6 +89,9 @@ class NewsListFragment  @Inject constructor()
     override fun onResume() {
         super.onResume()
         presenter.subscribe(this)
+        if(presenter.pageCount == 0) {
+            presenter.requestRefresh()
+        }
     }
 
     override fun onPause() {
@@ -90,7 +116,7 @@ class NewsListFragment  @Inject constructor()
 
     override fun showFlights(flightEvents: List<Data>) {
         Timber.d("Flight Events size %s", flightEvents.size)
-        newsAdapter.flightEvents = flightEvents
+        newsAdapter.addNews(flightEvents,presenter.pageCount == 1)
         showEmptyView(false)
     }
 
