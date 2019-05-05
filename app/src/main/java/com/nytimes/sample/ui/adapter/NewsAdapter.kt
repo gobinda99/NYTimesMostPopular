@@ -4,9 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.nytimes.sample.R
 import com.nytimes.sample.data.model.News
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.news_item.*
 import timber.log.Timber
 
@@ -56,6 +59,10 @@ class NewsAdapter(
 
         fun bind(news: News) {
             with(news) {
+                media?.takeIf { it.isNotEmpty() }?.get(0)?.takeIf { "image".equals(it.type) }
+                    ?.mediaMetadata?.takeIf { it.isNotEmpty() }?.get(0)?.url?.let {
+                    Glide.with(itemView).load(it).apply(RequestOptions.circleCropTransform()).into(image);
+                }
                 titleText.text = title
                 byLineText.text = byline
                 dateText.text = publishedDate

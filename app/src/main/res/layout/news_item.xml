@@ -5,17 +5,18 @@
               android:layout_height="wrap_content"
               android:layout_gravity="center"
               android:gravity="center"
- android:padding="15dp">
+              android:padding="15dp">
 
-    <ImageView android:layout_width="60dp"
-               android:layout_height="60dp"
+    <ImageView android:layout_width="65dp"
+               android:layout_height="65dp"
                android:src="@mipmap/ic_launcher_round"
                android:padding="10dp"
+               android:id="@+id/image"
     />
 
     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:orientation="vertical">
+                  android:layout_weight="1"
+                  android:orientation="vertical">
         <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
 
         <RelativeLayout android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-         >
+                        android:paddingTop="5dp"
+        >
             <TextView
                     android:id="@+id/byLineText"
                     android:layout_width="wrap_content"
@@ -36,7 +38,6 @@
                     android:ellipsize="end"
                     android:textColor="#cccccc"
                     android:textSize="12sp"
-
 
 
             />
@@ -64,28 +65,26 @@
             android:textSize="20dp"
             android:textColor="#bbbbbb"
             android:padding="5dp"
-            />
+    />
 
 </LinearLayout>
 
 
+        <!--
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="20dp">
 
-<!--
+        <TextView
+                android:id="@+id/list_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+        />
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="20dp">
+        </LinearLayout>
 
-<TextView
-        android:id="@+id/list_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-/>
-
-</LinearLayout>
-
--->
+        -->
