@@ -1,7 +1,7 @@
 package com.nytimes.sample.di
 
 import com.gobinda.mvp.sample.ui.flightevent.NewsModule
-import com.nytimes.sample.MYNewsMainActivity
+import com.nytimes.sample.ui.news.MYNewsMainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
