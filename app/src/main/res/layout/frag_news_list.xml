@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/frag_news_list"
-        tools:context=".MainActivity"
+        tools:context=".MYNewsMainActivity"
 >
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
