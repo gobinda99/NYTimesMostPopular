@@ -9,23 +9,24 @@ import com.bumptech.glide.request.RequestOptions
 import com.nytimes.sample.R
 import com.nytimes.sample.data.model.News
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.news_item.*
 import timber.log.Timber
 
 /**
  */
 class NewsAdapter(
-    flightEvents: List<News>,
+    news: List<News>,
     private val itemClick: (News) -> Unit = {}
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
+    var newsList: MutableList<News> = news.toMutableList()
 
-    var newsList: MutableList<News> = flightEvents.toMutableList()
-
-    fun  addNews(news: List<News>, clear : Boolean = false)  {
+    fun addNews(news: List<News>, clear: Boolean = false) {
+        if (clear) {
+            newsList.clear()
+        }
         newsList.addAll(news.toMutableList())
         Timber.d("Adapter Called called ")
         notifyDataSetChanged()
@@ -35,20 +36,19 @@ class NewsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflate = LayoutInflater.from(parent.context)
         return inflate.inflate(R.layout.news_item, parent, false)
-                .run {
-                    ItemViewHolder(this, itemClick)
+            .run {
+                ItemViewHolder(this, itemClick)
 
-                }
+            }
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            (holder as ItemViewHolder).run {
-                bind(newsList.get(position) as News)
-            }
+        (holder as ItemViewHolder).run {
+            bind(newsList.get(position) as News)
+        }
 
     }
-
 
 
     override fun getItemCount() = newsList.size
@@ -70,7 +70,6 @@ class NewsAdapter(
             }
         }
     }
-
 
 
 }

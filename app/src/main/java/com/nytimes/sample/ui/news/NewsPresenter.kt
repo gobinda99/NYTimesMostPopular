@@ -19,6 +19,7 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
     private lateinit var view: NewsContract.View
 
     private var _pageCount = 0
+    private var apiCalling = false;
 
     override val pageCount: Int
         get() = _pageCount
@@ -36,7 +37,10 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
     }
 
     override fun requestRefresh() {
-        disposable.add(api(true))
+        if(!apiCalling) {
+            apiCalling = true
+            disposable.add(api(true))
+        }
     }
 
 
@@ -63,10 +67,19 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
 
     private fun api(refresh: Boolean): Disposable {
         view.showLoading(refresh)
-        return dataSource.api.getData(7,"Qj927MHKVm64g09jfHvLpI6cqMgnjtWW")
+        var period :Int = -1
+        if(refresh || pageCount == 0){
+            period = 1;
+        }else if(pageCount == 1) {
+            period = 7
+        } else if(pageCount == 2) {
+            period = 30
+        }
+        return dataSource.api.getData(period,"Qj927MHKVm64g09jfHvLpI6cqMgnjtWW")
 //        return dataSource.api.getData(/*7,"az2kk489sa347aaa4nn431aa8k"*/)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                apiCalling = false
                 view.showNews(it.results!!)
                 view.showLoading(false)
                 if(refresh) {
@@ -95,6 +108,7 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
                 Observable.just(e)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
+                        apiCalling = false
                         view.showError()
                         view.showLoading(false)
                     }
@@ -104,6 +118,9 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
 
 
     override fun onLoadNextRequest() {
-        api(false)
+        if(!apiCalling) {
+            apiCalling = true
+            api(false)
+        }
     }
 }

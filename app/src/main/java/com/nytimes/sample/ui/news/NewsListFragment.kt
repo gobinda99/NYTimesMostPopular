@@ -62,11 +62,11 @@ class NewsListFragment  @Inject constructor()
                     val firstVisibleItemPosition =
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                    if (!pullToRefresh.isRefreshing() /*&& !mEndOfList*/) {
+                    if (!pullToRefresh.isRefreshing() && presenter.pageCount < 3) {
                         if (
-                            visibleItemCount + firstVisibleItemPosition >= totalItemCount - 3 /*Constants.PAGINATION_MARGIN*/
+                            visibleItemCount + firstVisibleItemPosition >= totalItemCount - 7 /*Constants.PAGINATION_MARGIN*/
                             && firstVisibleItemPosition >= 0
-                            && totalItemCount >= 10/* Constants.PAGE_SIZE*/
+                            && totalItemCount >= 20/* Constants.PAGE_SIZE*/
                         ) {
                             presenter.onLoadNextRequest()
                         }
