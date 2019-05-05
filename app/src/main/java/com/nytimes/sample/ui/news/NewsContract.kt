@@ -19,7 +19,7 @@ interface NewsContract {
 
         fun showLoading(active: Boolean)
 
-        fun showFlights(news : List<News>)
+        fun showNews(news : List<News>)
 
         fun showError()
 

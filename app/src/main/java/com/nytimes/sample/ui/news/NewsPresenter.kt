@@ -6,7 +6,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -68,7 +67,7 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
 //        return dataSource.api.getData(/*7,"az2kk489sa347aaa4nn431aa8k"*/)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                view.showFlights(it.results)
+                view.showNews(it.results!!)
                 view.showLoading(false)
                 if(refresh) {
                     _pageCount = 1

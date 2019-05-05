@@ -57,7 +57,7 @@ class NewsAdapter(
 
         fun bind(flightEvent: News) {
             with(flightEvent) {
-                list_id.text = flightEvent.title
+                list_id.text = flightEvent.adxKeywords
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
