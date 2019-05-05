@@ -116,9 +116,9 @@ class NewsListFragment  @Inject constructor()
     }
 
 
-    override fun showNews(flightEvents: List<News>) {
-        Timber.d("Flight Events size %s", flightEvents.size)
-        newsAdapter.addNews(flightEvents,presenter.pageCount == 1)
+    override fun showNews(news: List<News>) {
+        Timber.d("News  size %s", news.size)
+        newsAdapter.addNews(news,presenter.pageCount == 1)
         showEmptyView(false)
     }
 

@@ -25,11 +25,11 @@ class DetailActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_details)
         setSupportActionBar(detail_toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+//        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         news = intent.getParcelableExtra<News>("news")
 
-        details_data.text = news.title
+//        details_data.text = news.title
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
