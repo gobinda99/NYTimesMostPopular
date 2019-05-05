@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.nytimes.sample.R
-import com.nytimes.sample.data.model.Data
 import com.nytimes.sample.di.ActivityScope
 import com.nytimes.sample.ui.adapter.NewsAdapter
 import com.nytimes.sample.util.showSnackBar
@@ -21,7 +20,6 @@ import javax.inject.Inject
 import androidx.recyclerview.widget.RecyclerView
 import com.nytimes.sample.data.model.News
 import com.nytimes.sample.ui.news.DetailActivity
-import com.nytimes.sample.ui.news.DetailFragment
 
 
 /**
@@ -126,7 +124,7 @@ class NewsListFragment  @Inject constructor()
 
 
     override fun showError() {
-        if (newsAdapter.flightEvents.isNullOrEmpty()) {
+        if (newsAdapter.newsList.isNullOrEmpty()) {
             showEmptyView(true)
         } else {
             view?.showSnackBar(getString(R.string.msg_failed_to_refresh), Snackbar.LENGTH_LONG)

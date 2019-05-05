@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nytimes.sample.R
-import com.nytimes.sample.data.model.Data
 import com.nytimes.sample.data.model.News
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.news_item.*
@@ -21,10 +20,10 @@ class NewsAdapter(
 
 
 
-    var flightEvents: MutableList<News> = flightEvents.toMutableList()
+    var newsList: MutableList<News> = flightEvents.toMutableList()
 
     fun  addNews(news: List<News>, clear : Boolean = false)  {
-        flightEvents.addAll(news.toMutableList())
+        newsList.addAll(news.toMutableList())
         Timber.d("Adapter Called called ")
         notifyDataSetChanged()
     }
@@ -42,22 +41,23 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             (holder as ItemViewHolder).run {
-                bind(flightEvents.get(position) as News)
+                bind(newsList.get(position) as News)
             }
 
     }
 
 
 
-    override fun getItemCount() = flightEvents.size
+    override fun getItemCount() = newsList.size
 
 
     inner class ItemViewHolder(override val containerView: View, private val itemClick: (News) -> Unit) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun bind(flightEvent: News) {
-            with(flightEvent) {
-                list_id.text = flightEvent.adxKeywords
+        fun bind(news: News) {
+            with(news) {
+                titleText.text = title
+                byLineText.text = byline
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
