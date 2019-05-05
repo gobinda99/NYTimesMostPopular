@@ -146,7 +146,8 @@ class NewsListFragment  @Inject constructor()
 
     private fun showDetail(news: News) {
 
-        startActivity(Intent(activity,DetailActivity::class.java))
+        startActivity(Intent(activity,DetailActivity::class.java)
+            .also { it.putExtra("news",news) })
     }
 
 

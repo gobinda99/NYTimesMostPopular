@@ -1,10 +1,12 @@
 package com.nytimes.sample.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import com.nytimes.sample.util.EmptyToNull
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class News(
     val id: Long?,
     val url: String?,
@@ -29,8 +31,10 @@ data class News(
     val media: List<Media>?,
     val uri: String?
 
-)
+) : Parcelable
 
+
+@Parcelize
 data class Media(
     val type: String?,
     val subtype: String?,
@@ -39,12 +43,14 @@ data class Media(
     val approved_for_syndication: String?,
     @SerializedName("media-metadata")
     val mediaMetadata: List<MediaMetaData>
-)
+) : Parcelable
 
+
+@Parcelize
 data class MediaMetaData(
     val url: String?,
     val format: String?,
     val height: Int?,
     val width: Int?
-)
+) : Parcelable
 
