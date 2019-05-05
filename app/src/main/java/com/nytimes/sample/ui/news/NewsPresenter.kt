@@ -64,10 +64,11 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
 
     private fun api(refresh: Boolean): Disposable {
         view.showLoading(refresh)
-        return dataSource.api.getData()
+        return dataSource.api.getData(7,"Qj927MHKVm64g09jfHvLpI6cqMgnjtWW")
+//        return dataSource.api.getData(/*7,"az2kk489sa347aaa4nn431aa8k"*/)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                view.showFlights(it)
+                view.showFlights(it.results)
                 view.showLoading(false)
                 if(refresh) {
                     _pageCount = 1

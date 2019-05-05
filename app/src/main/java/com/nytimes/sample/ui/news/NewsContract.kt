@@ -1,6 +1,7 @@
 package com.gobinda.mvp.sample.ui.flightevent
 
 import com.nytimes.sample.data.model.Data
+import com.nytimes.sample.data.model.News
 import com.nytimes.sample.ui.BasePresenter
 import com.nytimes.sample.ui.BaseView
 
@@ -18,7 +19,7 @@ interface NewsContract {
 
         fun showLoading(active: Boolean)
 
-        fun showFlights(flightEvents : List<Data>)
+        fun showFlights(news : List<News>)
 
         fun showError()
 

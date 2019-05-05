@@ -19,6 +19,7 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 import androidx.recyclerview.widget.RecyclerView
+import com.nytimes.sample.data.model.News
 import com.nytimes.sample.ui.news.DetailActivity
 import com.nytimes.sample.ui.news.DetailFragment
 
@@ -117,7 +118,7 @@ class NewsListFragment  @Inject constructor()
     }
 
 
-    override fun showFlights(flightEvents: List<Data>) {
+    override fun showFlights(flightEvents: List<News>) {
         Timber.d("Flight Events size %s", flightEvents.size)
         newsAdapter.addNews(flightEvents,presenter.pageCount == 1)
         showEmptyView(false)
@@ -143,12 +144,7 @@ class NewsListFragment  @Inject constructor()
         }
     }
 
-    private fun showDetail(flight: Data) {
-//        activity!!.supportFragmentManager.beginTransaction().run {
-//            replace(R.id.container, DetailFragment())
-//            addToBackStack(null)
-//            commit()
-//        }
+    private fun showDetail(news: News) {
 
         startActivity(Intent(activity,DetailActivity::class.java))
     }

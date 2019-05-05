@@ -1,15 +1,21 @@
 package com.nytimes.sample.data.api
 
 import com.nytimes.sample.BuildConfig
+import com.nytimes.sample.data.api.response.NewsResponse
 import com.nytimes.sample.data.model.Data
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.Url
+import java.time.chrono.ChronoPeriod
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -18,9 +24,12 @@ import java.util.concurrent.TimeUnit
  */
 interface RestApi {
 
-
     @GET("/wp-content/uploads/dummy-response.json")
     fun getData(): Flowable<List<Data>>
+
+
+    @GET("/svc/mostpopular/v2/viewed/{period}.json")
+    fun getData(@Path("period") period: Int, @Query("api-key") key : String): Flowable<NewsResponse>
 
 
     companion object {
@@ -63,6 +72,7 @@ interface RestApi {
             adapter = Retrofit.Builder()
                 .client(httpClient)
                 .baseUrl(BuildConfig.API_URL)
+//                .baseUrl("https://get.rosterbuster.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(
                     RxJava2CallAdapterFactory
