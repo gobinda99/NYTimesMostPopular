@@ -16,15 +16,15 @@ import io.reactivex.Single
 @Dao
 interface NYNewDao {
 
-    @Query("SELECT * FROM flight_events")
-    fun loadFlightEvents(): Single<List<Data>>
+    @Query("SELECT * FROM data")
+    fun loadData(): Single<List<Data>>
 
-    @Query("SELECT * from flight_events where id = :id LIMIT 1")
-    fun loadFlightEventById(id: Int): Single<Data>
+    @Query("SELECT * from data where id = :id LIMIT 1")
+    fun loadDataById(id: Int): Single<Data>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFlightEvents(flights: List<Data>): Completable
+    fun insertData(flights: List<Data>): Completable
 
-    @Query("DELETE FROM flight_events")
-    fun deleteAllFlightEvents(): Completable
+    @Query("DELETE FROM data")
+    fun deleteAllData(): Completable
 }
