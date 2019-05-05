@@ -58,14 +58,11 @@ class NewsAdapter(
             with(news) {
                 titleText.text = title
                 byLineText.text = byline
+                dateText.text = publishedDate
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
     }
-
-
-
-
 
 
 
