@@ -16,11 +16,11 @@ abstract class NewsModule {
 
     @FragmentScope
     @ContributesAndroidInjector
-    internal abstract fun flyEventsFragment(): NewsListFragment
+    internal abstract fun newsListFragment(): NewsListFragment
 
     @ActivityScope
     @Binds
-    internal abstract fun flyEventsPresenter(presenter: NewsPresenter): NewsContract.Presenter
+    internal abstract fun newsPresenter(presenter: NewsPresenter): NewsContract.Presenter
 
 
 }

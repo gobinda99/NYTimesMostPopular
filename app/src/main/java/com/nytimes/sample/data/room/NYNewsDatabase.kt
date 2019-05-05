@@ -11,22 +11,22 @@ import com.nytimes.sample.data.model.Data
  * named flight-sample.db and its records
  */
 @Database(entities = arrayOf(Data::class), version = 1)
-abstract class FlightDatabase : RoomDatabase() {
+abstract class NYNewsDatabase : RoomDatabase() {
 
-    abstract fun flightEventDao(): FlightEventDao
+    abstract fun flightEventDao(): NYNewDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: FlightDatabase? = null
+        private var INSTANCE: NYNewsDatabase? = null
 
-        fun getInstance(context: Context): FlightDatabase =
+        fun getInstance(context: Context): NYNewsDatabase =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: bindDatabase(context).also { INSTANCE = it }
             }
 
         private fun bindDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, FlightDatabase::class.java, "flight-sample.db")
+            Room.databaseBuilder(context.applicationContext, NYNewsDatabase::class.java, "flight-sample.db")
                 .build()
     }
 }

@@ -1,7 +1,7 @@
 package com.nytimes.sample.data
 
 import android.content.Context
-import com.gobinda.mvp.sample.room.FlightDatabase
+import com.gobinda.mvp.sample.room.NYNewsDatabase
 import com.nytimes.sample.data.api.RestApi
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,6 +14,6 @@ import javax.inject.Singleton
  */
 @Singleton
 class DataSource @Inject constructor(private val context: Context) {
-    val database = FlightDatabase.getInstance(context)
+    val database = NYNewsDatabase.getInstance(context)
     val api = RestApi.api
 }

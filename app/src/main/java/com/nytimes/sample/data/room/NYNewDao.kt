@@ -14,7 +14,7 @@ import io.reactivex.Single
  * scheduling, non block ui operation can be maintained easily.
  */
 @Dao
-interface FlightEventDao {
+interface NYNewDao {
 
     @Query("SELECT * FROM flight_events")
     fun loadFlightEvents(): Single<List<Data>>

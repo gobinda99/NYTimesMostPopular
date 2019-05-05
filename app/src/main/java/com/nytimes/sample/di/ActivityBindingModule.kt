@@ -16,6 +16,6 @@ abstract class ActivityBindingModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = arrayOf(NewsModule::class))
-    internal abstract fun flightEventActivity(): MainActivity
+    internal abstract fun nyMainActivity(): MainActivity
 
 }

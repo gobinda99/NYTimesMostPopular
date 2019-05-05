@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ShareActionProvider
 import com.nytimes.sample.data.model.News
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.content_details.*
 import android.content.Intent
 import androidx.core.view.MenuItemCompat
 import com.nytimes.sample.R
@@ -25,17 +24,16 @@ class DetailActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_details)
         setSupportActionBar(detail_toolbar)
-//        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         news = intent.getParcelableExtra<News>("news")
 
-//        details_data.text = news.title
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.details, menu)
         menu.findItem(R.id.action_share).also { menuItem ->
-            shareProvider = MenuItemCompat.getActionProvider(menuItem)/*menuItem.actionProvider*/ as? ShareActionProvider
+            shareProvider =
+                MenuItemCompat.getActionProvider(menuItem)/*menuItem.actionProvider*/ as? ShareActionProvider
             /*menuItem.setOnMenuItemClickListener {
                 val intent = Intent(Intent.ACTION_SEND).also {
                     it.type = "text/plain"
@@ -50,8 +48,6 @@ class DetailActivity : AppCompatActivity() {
 
         return true
     }
-
-
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

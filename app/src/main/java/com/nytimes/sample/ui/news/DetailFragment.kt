@@ -25,13 +25,12 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         activity?.intent?.getParcelableExtra<News>("news")?.apply {
-            columnText.text = column;
             titleText.text = title
             byText.text = byline
             dateText.text = publishedDate
             abstractText.text = abstract
             media?.takeIf { it.isNotEmpty() }?.get(0)?.takeIf { "image".equals(it.type) }
-                ?.mediaMetadata?.takeIf { it.isNotEmpty() && it.size > 2}?.get(1)?.url?.let {
+                ?.mediaMetadata?.takeIf { it.isNotEmpty() && it.size > 2 }?.get(1)?.url?.let {
                 Glide.with(this@DetailFragment).load(it).into(image);
             }
         }

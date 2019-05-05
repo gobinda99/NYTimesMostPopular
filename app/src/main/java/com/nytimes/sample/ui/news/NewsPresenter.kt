@@ -1,8 +1,8 @@
 package com.gobinda.mvp.sample.ui.flightevent
 
+import com.nytimes.sample.BuildConfig
 import com.nytimes.sample.data.DataSource
 import com.nytimes.sample.di.ActivityScope
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -18,18 +18,16 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
     private val disposable = CompositeDisposable()
     private lateinit var view: NewsContract.View
 
-    private var _pageCount = 0
+    private var _count = 0
     private var apiCalling = false;
 
-    override val pageCount: Int
-        get() = _pageCount
+    override val count: Int
+        get() = _count
 
 
     override fun subscribe(view: NewsContract.View) {
         this.view = view
-//        disposable.add(dbOrApi())
     }
-
 
 
     override fun unSubscribe() {
@@ -37,88 +35,49 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
     }
 
     override fun requestRefresh() {
-        if(!apiCalling) {
+        if (!apiCalling) {
             apiCalling = true
             disposable.add(api(true))
         }
     }
 
 
-
-//
-//    private fun dbOrApi(): Disposable {
-//        return dataSource.database.flightEventDao().loadFlightEvents()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                if (it.isNotEmpty()) {
-//                    view.showFlights(it)
-//                    view.showLoading(false)
-//                    _pageCount ++;
-//                } else {
-//                    api()
-//                }
-//
-//            }, { e -> Timber.e(e) })
-//    }
-
-
-
-
     private fun api(refresh: Boolean): Disposable {
         view.showLoading(refresh)
-        var period :Int = -1
-        if(refresh || pageCount == 0){
-            period = 1;
-        }else if(pageCount == 1) {
-            period = 7
-        } else if(pageCount == 2) {
-            period = 30
-        }
-        return dataSource.api.getData(period,"Qj927MHKVm64g09jfHvLpI6cqMgnjtWW")
-//        return dataSource.api.getData(/*7,"az2kk489sa347aaa4nn431aa8k"*/)
+        return dataSource.api.getData(getPeriod(refresh), BuildConfig.API_KEY)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 apiCalling = false
                 view.showNews(it.results!!)
                 view.showLoading(false)
-                if(refresh) {
-                    _pageCount = 1
+                if (refresh) {
+                    _count = 1
                 } else {
-                    _pageCount++;
+                    _count++;
                 }
-                /*val flightDao = dataSource.database.flightEventDao()
-                flightDao.deleteAllFlightEvents()
-                    .subscribe({
-                        Timber.d("Flight Event delete succeed")
-                        flightDao.insertFlightEvents(it)
-                            .subscribe({
-                                Timber.d("Flight Event new records store succeed")
-                                flightDao.loadFlightEvents()
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe({
-                                        view.showFlights(it)
-                                        view.showLoading(false)
-                                    }, { e -> Timber.e(e) })
-
-                            }, { e -> Timber.e(e) })
-                    }, { e -> Timber.e(e) })*/
-
             }, { e ->
-                Observable.just(e)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        apiCalling = false
-                        view.showError()
-                        view.showLoading(false)
-                    }
+                apiCalling = false
+                view.showError()
+                view.showLoading(false)
                 Timber.e(e)
             })
     }
 
+    private fun getPeriod(refresh: Boolean): Int {
+        var period: Int = -1
+        if (refresh || count == 0) {
+            period = 1;
+        } else if (count == 1) {
+            period = 7
+        } else if (count == 2) {
+            period = 30
+        }
+        return period
+    }
 
-    override fun onLoadNextRequest() {
-        if(!apiCalling) {
+
+    override fun lazyLoadRequest() {
+        if (!apiCalling) {
             apiCalling = true
             api(false)
         }

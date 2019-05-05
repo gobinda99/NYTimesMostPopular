@@ -23,22 +23,20 @@ import com.nytimes.sample.ui.news.DetailActivity
 
 
 /**
- * This fragment class to display list of flight's event
+ * This fragment class to display list of news
  */
 @ActivityScope
-class NewsListFragment  @Inject constructor()
-    : DaggerFragment() , NewsContract.View {
+class NewsListFragment @Inject constructor() : DaggerFragment(), NewsContract.View {
 
     @Inject
     override lateinit var presenter: NewsContract.Presenter
 
     private val newsAdapter = NewsAdapter(ArrayList(0),
-        {  showDetail(it)})
+        { showDetail(it) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-        Timber.d("Adapter blala")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,13 +45,18 @@ class NewsListFragment  @Inject constructor()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUiAndListener()
+
+
+    }
+
+    private fun setupUiAndListener() {
         with(recyclerFlightsView) {
             setHasFixedSize(true)
             adapter = newsAdapter
             val manager = LinearLayoutManager(context)
             layoutManager = manager
-            addItemDecoration(DividerItemDecoration(context,manager.orientation))
-
+            /*addItemDecoration(DividerItemDecoration(context,manager.orientation))*/
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
@@ -62,13 +65,13 @@ class NewsListFragment  @Inject constructor()
                     val firstVisibleItemPosition =
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                    if (!pullToRefresh.isRefreshing() && presenter.pageCount < 3) {
+                    if (!pullToRefresh.isRefreshing() && presenter.count < 3) {
                         if (
                             visibleItemCount + firstVisibleItemPosition >= totalItemCount - 7 /*Constants.PAGINATION_MARGIN*/
                             && firstVisibleItemPosition >= 0
                             && totalItemCount >= 20/* Constants.PAGE_SIZE*/
                         ) {
-                            presenter.onLoadNextRequest()
+                            presenter.lazyLoadRequest()
                         }
                     }
                 }
@@ -77,21 +80,19 @@ class NewsListFragment  @Inject constructor()
         }
 
         pullToRefresh.setOnRefreshListener {
-          presenter.requestRefresh()
+            presenter.requestRefresh()
         }
 
         emptyView.setOnClickListener {
             showEmptyView(false)
             presenter.requestRefresh()
         }
-
-
     }
 
     override fun onResume() {
         super.onResume()
         presenter.subscribe(this)
-        if(presenter.pageCount == 0) {
+        if (presenter.count == 0) {
             presenter.requestRefresh()
         }
     }
@@ -100,7 +101,6 @@ class NewsListFragment  @Inject constructor()
         super.onPause()
         presenter.unSubscribe()
     }
-
 
 
     override fun showLoading(active: Boolean) {
@@ -118,7 +118,7 @@ class NewsListFragment  @Inject constructor()
 
     override fun showNews(news: List<News>) {
         Timber.d("News  size %s", news.size)
-        newsAdapter.addNews(news,presenter.pageCount == 1)
+        newsAdapter.addNews(news, presenter.count == 1)
         showEmptyView(false)
     }
 
@@ -131,23 +131,22 @@ class NewsListFragment  @Inject constructor()
         }
     }
 
-    private fun showEmptyView(flag : Boolean) {
-        if(flag) {
+    private fun showEmptyView(flag: Boolean) {
+        if (flag) {
             emptyView?.visibility = View.VISIBLE
             recyclerFlightsView?.visibility = View.GONE
-        }else {
+        } else {
             emptyView?.visibility = View.GONE
             recyclerFlightsView?.visibility = View.VISIBLE
 
         }
     }
 
+
     private fun showDetail(news: News) {
-
-        startActivity(Intent(activity,DetailActivity::class.java)
-            .also { it.putExtra("news",news) })
+        startActivity(Intent(activity, DetailActivity::class.java)
+            .also { it.putExtra("news", news) })
     }
-
 
 
 }

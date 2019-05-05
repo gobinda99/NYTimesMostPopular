@@ -19,6 +19,7 @@ android {
 
 //        buildConfigField "String", "API_URL", "\"https://get.rosterbuster.com/\""
         buildConfigField "String", "API_URL", "\"https://api.nytimes.com/\""
+        buildConfigField "String", "API_KEY", "\"Qj927MHKVm64g09jfHvLpI6cqMgnjtWW\""
 
         //to do
         javaCompileOptions {

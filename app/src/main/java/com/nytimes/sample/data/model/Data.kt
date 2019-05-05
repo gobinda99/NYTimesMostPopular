@@ -5,13 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "flight_events")
+@Entity(tableName = "data")
 data class Data(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     @Transient
     val id : Int,
 
-    @ColumnInfo(name = "flight_no")
-    @SerializedName("Date")
-    val flightNo: String?)
+    @ColumnInfo(name = "date")
+    @SerializedName("published_date")
+    val date: String?)
