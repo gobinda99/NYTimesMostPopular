@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
 
-class MYNewsMainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class NYNewsMainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     lateinit  var fragment: NewsListFragment

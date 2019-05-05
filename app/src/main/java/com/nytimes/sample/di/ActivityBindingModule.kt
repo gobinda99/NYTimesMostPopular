@@ -1,7 +1,7 @@
 package com.nytimes.sample.di
 
 import com.gobinda.mvp.sample.ui.flightevent.NewsModule
-import com.nytimes.sample.ui.news.MYNewsMainActivity
+import com.nytimes.sample.ui.news.NYNewsMainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,6 +16,6 @@ abstract class ActivityBindingModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = arrayOf(NewsModule::class))
-    internal abstract fun nyMainActivity(): MYNewsMainActivity
+    internal abstract fun nyMainActivity(): NYNewsMainActivity
 
 }
