@@ -1,14 +1,15 @@
-# NYTimesMostPopular
+# NY Times Most Popular
 
 
-NYTimesMostPopular and show a list of articles,
- that shows details when items on the list are tapped.
+NY Times Most Popular show as list of articles and its
+ details when items on the list are tapped.
 
  ### Tech
 
  - MVP pattern used.
  - Dagger, Retrofit, RxJava, Timber, Glide are used.
  - Android X and Kotlin extension are used.
+ -> Test cases is pending
 
 
  Build the project from the command-line
@@ -19,13 +20,13 @@ NYTimesMostPopular and show a list of articles,
  $ ./gradlew assembleDebug
  ```
 
- Run static code analysis such as linting
+ Run static code analysis such as linting. The result will generate on path app/build/reports/lint-results.html
 
   ```sh
   $ ./gradlew lint
   ```
 
-  Run unit tests and code coverage
+  Run unit tests and code coverage,
 
    ```sh
    $ ./gradlew test
@@ -41,7 +42,8 @@ NYTimesMostPopular and show a list of articles,
          -Dsonar.login=53935205a45f1b78679ae5e986eaa76d334bf2d9
   ```
 
-  Here is link to see [SonacQube Report](https://sonarcloud.io/project/issues?id=gobinda99_NYTimesMostPopular&resolved=false) of the project
+  Here is the link to see [SonacQube Report](https://sonarcloud.io/project/issues?id=gobinda99_NYTimesMostPopular&resolved=false) of the project.
+
 
 
 
