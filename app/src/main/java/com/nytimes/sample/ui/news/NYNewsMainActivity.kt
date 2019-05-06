@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
 
+
+/**
+ * NYNews Main Launcher Activity
+ */
 class NYNewsMainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
@@ -67,7 +71,6 @@ class NYNewsMainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigatio
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_manage -> {
             }

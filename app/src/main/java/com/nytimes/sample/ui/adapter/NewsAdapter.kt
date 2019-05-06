@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.news_item.*
 import timber.log.Timber
 
 /**
+ * News Adapter
  */
 class NewsAdapter(
     news: List<News>,
@@ -28,7 +29,6 @@ class NewsAdapter(
             newsList.clear()
         }
         newsList.addAll(news.toMutableList())
-        Timber.d("Adapter Called called ")
         notifyDataSetChanged()
     }
 

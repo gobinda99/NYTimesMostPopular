@@ -5,21 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.nytimes.sample.R
+import com.nytimes.sample.data.model.News
 import com.nytimes.sample.di.ActivityScope
 import com.nytimes.sample.ui.adapter.NewsAdapter
+import com.nytimes.sample.ui.news.DetailActivity
+import com.nytimes.sample.util.Constants
 import com.nytimes.sample.util.showSnackBar
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.frag_news_list.*
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
-import androidx.recyclerview.widget.RecyclerView
-import com.nytimes.sample.data.model.News
-import com.nytimes.sample.ui.news.DetailActivity
 
 
 /**
@@ -51,7 +51,7 @@ class NewsListFragment @Inject constructor() : DaggerFragment(), NewsContract.Vi
     }
 
     private fun setupUiAndListener() {
-        with(recyclerFlightsView) {
+        with(newsRecyclerView) {
             setHasFixedSize(true)
             adapter = newsAdapter
             val manager = LinearLayoutManager(context)
@@ -65,11 +65,11 @@ class NewsListFragment @Inject constructor() : DaggerFragment(), NewsContract.Vi
                     val firstVisibleItemPosition =
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                    if (!pullToRefresh.isRefreshing() && presenter.count < 3) {
+                    if (!pullToRefresh.isRefreshing() && presenter.count < Constants.ITEM_PAGE_COUNT) {
                         if (
-                            visibleItemCount + firstVisibleItemPosition >= totalItemCount - 7 /*Constants.PAGINATION_MARGIN*/
+                            visibleItemCount + firstVisibleItemPosition >= totalItemCount - Constants.ITEM_PAGE_MARGIN
                             && firstVisibleItemPosition >= 0
-                            && totalItemCount >= 20/* Constants.PAGE_SIZE*/
+                            && totalItemCount >= Constants.ITEM_PAGE_MARGIN
                         ) {
                             presenter.lazyLoadRequest()
                         }
@@ -134,10 +134,10 @@ class NewsListFragment @Inject constructor() : DaggerFragment(), NewsContract.Vi
     private fun showEmptyView(flag: Boolean) {
         if (flag) {
             emptyView?.visibility = View.VISIBLE
-            recyclerFlightsView?.visibility = View.GONE
+            newsRecyclerView?.visibility = View.GONE
         } else {
             emptyView?.visibility = View.GONE
-            recyclerFlightsView?.visibility = View.VISIBLE
+            newsRecyclerView?.visibility = View.VISIBLE
 
         }
     }

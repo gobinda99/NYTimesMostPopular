@@ -10,6 +10,10 @@ import com.nytimes.sample.R
 import com.nytimes.sample.data.model.News
 import kotlinx.android.synthetic.main.frag_details.*
 
+
+/**
+ * Details Fragment
+ */
 class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

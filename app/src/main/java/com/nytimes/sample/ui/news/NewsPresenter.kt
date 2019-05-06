@@ -10,6 +10,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 /**
+ * News Presenter Instance class of MVP
  */
 @ActivityScope
 class NewsPresenter @Inject constructor(private val dataSource: DataSource)

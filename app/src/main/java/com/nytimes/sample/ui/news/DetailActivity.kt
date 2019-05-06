@@ -13,6 +13,9 @@ import com.nytimes.sample.R
 import timber.log.Timber
 
 
+/**
+ * Details Activity
+ */
 class DetailActivity : AppCompatActivity() {
 
     private var shareProvider: ShareActionProvider? = null
@@ -33,17 +36,7 @@ class DetailActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.details, menu)
         menu.findItem(R.id.action_share).also { menuItem ->
             shareProvider =
-                MenuItemCompat.getActionProvider(menuItem)/*menuItem.actionProvider*/ as? ShareActionProvider
-            /*menuItem.setOnMenuItemClickListener {
-                val intent = Intent(Intent.ACTION_SEND).also {
-                    it.type = "text/plain"
-                    it.putExtra(Intent.EXTRA_TEXT, news.url)
-
-                }
-                shareProvider?.setShareIntent(intent)
-                true
-            }*/
-
+                MenuItemCompat.getActionProvider(menuItem) as? ShareActionProvider
         }
 
         return true

@@ -8,7 +8,7 @@ import dagger.android.ContributesAndroidInjector
 
 
 /**
- * Flight Event Module which to inject dependencies  fragment and
+ * News Module which to inject dependencies  fragment and
  * Exposes presenter
  */
 @Module

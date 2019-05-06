@@ -6,6 +6,10 @@ import timber.log.Timber
 import java.lang.reflect.Type
 
 
+/**
+ * This class is used to convert empty "" String to null in List
+ * And it is used in Adapter to deserialize
+ */
 class EmptyToNull<T>
 private constructor() : JsonDeserializer<T> {
 

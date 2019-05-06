@@ -2,7 +2,6 @@ package com.nytimes.sample.data.api
 
 import com.google.gson.*
 import com.nytimes.sample.BuildConfig
-import com.nytimes.sample.data.model.Data
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
@@ -23,7 +22,7 @@ import com.google.gson.GsonBuilder
 interface RestApi {
 
     @GET("/svc/mostpopular/v2/viewed/{period}.json")
-    fun getData(@Path("period") period: Int, @Query("api-key") key : String): Flowable<Response>
+    fun getData(@Path("period") period: Int, @Query("api-key") key : String): Flowable<NewsResponse>
 
 
     companion object {
