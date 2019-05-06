@@ -48,7 +48,6 @@
                     android:id="@+id/dateText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2430:22:22"
                     android:layout_alignParentRight="true"
                     android:textColor="#cccccc"
                     android:layout_alignParentBottom="true"
@@ -61,9 +60,9 @@
     </LinearLayout>
 
     <TextView
+            android:id="@+id/rightIcon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text=">"
             android:textSize="20dp"
             android:textColor="#bbbbbb"
             android:padding="5dp"

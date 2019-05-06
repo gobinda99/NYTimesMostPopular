@@ -58,6 +58,10 @@ class NewsAdapter(
     inner class ItemViewHolder(override val containerView: View, private val itemClick: (News) -> Unit) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 
+        init {
+            rightIcon.toIcon(R.string.fa_angle_right)
+        }
+
         fun bind(news: News) {
             with(news) {
                 media?.takeIf { it.isNotEmpty() }?.get(0)?.takeIf { "image".equals(it.type) }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="fa_calender">&#xf073;</string>
+    <string name="fa_angle_right">&#xf105;</string>
 </resources>
