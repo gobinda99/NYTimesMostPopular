@@ -31,7 +31,7 @@ NYTimesMostPopular and show a list of articles,
    $ ./gradlew test
    ```
 
- SonarQube report for the code showing its quality summary
+ Run SonarQube from command line to generate report
 
   ```sh
      $ ./gradlew sonarqube \
@@ -40,6 +40,11 @@ NYTimesMostPopular and show a list of articles,
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.login=53935205a45f1b78679ae5e986eaa76d334bf2d9
   ```
+
+  Here is link to see [SonacQube Report](https://sonarcloud.io/project/issues?id=gobinda99_NYTimesMostPopular&resolved=false) of the project
+
+
+
 
 
 
