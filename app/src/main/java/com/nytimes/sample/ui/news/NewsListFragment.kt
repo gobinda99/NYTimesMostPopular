@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -31,7 +32,8 @@ class NewsListFragment @Inject constructor() : DaggerFragment(), NewsContract.Vi
     @Inject
     override lateinit var presenter: NewsContract.Presenter
 
-    private val newsAdapter = NewsAdapter(ArrayList(0),
+    @VisibleForTesting
+    val newsAdapter = NewsAdapter(ArrayList(0),
         { showDetail(it) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
