@@ -9,7 +9,8 @@ NY Times Most Popular show as list of articles and its
  - MVP pattern used.
  - Dagger, Retrofit, RxJava, Timber, Glide are used.
  - Android X and Kotlin extension are used.
- -> Test cases is pending
+
+
 
 
  Build the project from the command-line
@@ -20,19 +21,19 @@ NY Times Most Popular show as list of articles and its
  $ ./gradlew assembleDebug
  ```
 
- Run static code analysis such as linting. The result will generate on path app/build/reports/lint-results.html
+ Run static code analysis such as linting. The result will generate on path [app/build/reports/lint-results.html]
 
   ```sh
   $ ./gradlew lint
   ```
 
-  Run unit tests and code coverage,
+  Run unit tests and instrument test cases.
 
    ```sh
    $ ./gradlew test
    ```
 
- Run SonarQube from command line to generate report
+ Run SonarQube from command line to generate report.
 
   ```sh
      $ ./gradlew sonarqube \
@@ -43,6 +44,10 @@ NY Times Most Popular show as list of articles and its
   ```
 
   Here is the link to see [SonacQube Report](https://sonarcloud.io/project/issues?id=gobinda99_NYTimesMostPopular&resolved=false) of the project.
+
+  ###Todos
+
+  - Test Cases
 
 
 
