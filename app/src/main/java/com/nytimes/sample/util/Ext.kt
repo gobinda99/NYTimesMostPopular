@@ -21,18 +21,19 @@ fun View.showSnackBar(message: String, duration: Int) {
  * Functional extension TextView to convert FontAwesome text to icon
  * using stringResId
  */
-fun TextView.toIcon(stringResId: Int) {
-    toIcon(context.getString(stringResId))
+fun TextView.toIcon(stringResId: Int) : TextView{
+    return toIcon(context.getString(stringResId))
 }
 
 /**
  * Functional extension TextView to convert FontAwesome text to icon
  */
-fun TextView.toIcon(text: CharSequence? = this.text) {
+fun TextView.toIcon(text: CharSequence? = this.text) : TextView{
     gravity = Gravity.CENTER
     typeface = Typeface.createFromAsset(context.assets,
         "fonts/FontAwesome.ttf")
     this.text = text
+    return this
 }
 
 

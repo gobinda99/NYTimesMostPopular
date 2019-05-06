@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nytimes.sample.R
 import com.nytimes.sample.data.model.News
+import com.nytimes.sample.util.toIcon
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.news_item.*
 import timber.log.Timber
@@ -65,7 +66,7 @@ class NewsAdapter(
                 }
                 titleText.text = title
                 byLineText.text = byline
-                dateText.text = publishedDate
+                dateText.toIcon(R.string.fa_calender).also { it.text = it.text.toString()+"  "+ publishedDate  }
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
