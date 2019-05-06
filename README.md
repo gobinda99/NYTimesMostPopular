@@ -21,7 +21,7 @@ NY Times Most Popular show as list of articles and its
  $ ./gradlew assembleDebug
  ```
 
- Run static code analysis such as linting. The result will generate on path [app/build/reports/lint-results.html]
+ Run static code analysis such as linting. The result will generate on path "app/build/reports/lint-results.html"
 
   ```sh
   $ ./gradlew lint
@@ -45,7 +45,7 @@ NY Times Most Popular show as list of articles and its
 
   Here is the link to see [SonacQube Report](https://sonarcloud.io/project/issues?id=gobinda99_NYTimesMostPopular&resolved=false) of the project.
 
-  ###Todos
+  ### Todos
 
   - Test Cases
 
