@@ -45,7 +45,7 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ItemViewHolder).run {
-            bind(newsList.get(position) as News)
+            bind(newsList.get(position))
         }
 
     }

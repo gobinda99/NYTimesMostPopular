@@ -1,5 +1,2 @@
 /build
 
-!/build/reports/androidTests/connected/index.html
-!/build/reports/tests/testDebugUnitTest/index.html
-!/build/reports/tests/testReleaseUnitTest/index.html

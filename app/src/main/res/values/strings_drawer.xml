@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_import">Import</string>
+    <string name="nav_gallery">Gallery</string>
+    <string name="nav_slideshow">Slideshow</string>
+    <string name="nav_tools">Tools</string>
+    <string name="nav_communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+
+</resources>
