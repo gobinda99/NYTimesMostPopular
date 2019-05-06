@@ -45,7 +45,7 @@ class NewsPresenter @Inject constructor(private val dataSource: DataSource)
 
     private fun api(refresh: Boolean): Disposable {
         view.showLoading(refresh)
-        return dataSource.api.getData(getPeriod(refresh), BuildConfig.API_KEY)
+        return dataSource.api.getNews(getPeriod(refresh), BuildConfig.API_KEY)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 apiCalling = false

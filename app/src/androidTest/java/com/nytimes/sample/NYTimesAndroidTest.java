@@ -22,7 +22,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.*;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class NYTimesArticlesTest {
+public class NYTimesAndroidTest {
 
 
     @Before

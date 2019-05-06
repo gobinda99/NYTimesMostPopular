@@ -14,6 +14,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 import com.google.gson.GsonBuilder
+import retrofit2.Call
 
 
 /**
@@ -22,8 +23,10 @@ import com.google.gson.GsonBuilder
 interface RestApi {
 
     @GET("/svc/mostpopular/v2/viewed/{period}.json")
-    fun getData(@Path("period") period: Int, @Query("api-key") key : String): Flowable<NewsResponse>
+    fun getNews(@Path("period") period: Int, @Query("api-key") key : String): Flowable<NewsResponse>
 
+    @GET("/svc/mostpopular/v2/viewed/{period}.json")
+    fun getNewsForTesting(@Path("period") period: Int, @Query("api-key") key : String): Call<NewsResponse>
 
     companion object {
 
