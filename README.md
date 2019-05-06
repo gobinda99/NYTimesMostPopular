@@ -41,6 +41,12 @@ NY Times Most Popular show as list of articles and its
    $ ./gradlew clean connectedAndroidTest
    ```
 
+   All Tasks in a single command line. The reports and apk will generate in "app/build/*" repository.
+
+   ```sh
+   $ ./gradlew clean test connectedAndroidTest lint assembleDebug
+   ```
+
 
   Run SonarQube from command line to generate report.
 
