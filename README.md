@@ -9,7 +9,7 @@ NY Times Most Popular show as list of articles and its
  - MVP pattern used.
  - Dagger, Retrofit, RxJava, Timber, Glide are used.
  - Android X and Kotlin extension are used.
- - Unit Test Cases and Connected Test Cases
+ - JUnit and espresso are used for normal and connected test cases.
 
 
 
@@ -35,16 +35,17 @@ NY Times Most Popular show as list of articles and its
    $ ./gradlew clean test
    ```
 
-   Run Connected Android Test. Make sure mobile device or emulator connected to machine.
+  Run Connected Android Test. Make sure mobile device or emulator connected to machine.
 
-    ```sh
-    $ ./gradlew clean connectedAndroidTest
-    ```
+   ```sh
+   $ ./gradlew clean connectedAndroidTest
+   ```
 
- Run SonarQube from command line to generate report.
+
+  Run SonarQube from command line to generate report.
 
   ```sh
-     $ ./gradlew sonarqube \
+  $ ./gradlew sonarqube \
          -Dsonar.projectKey=gobinda99_NYTimesMostPopular \
          -Dsonar.organization=gobinda99-github \
          -Dsonar.host.url=https://sonarcloud.io \
