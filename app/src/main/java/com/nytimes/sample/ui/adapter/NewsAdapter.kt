@@ -70,7 +70,7 @@ class NewsAdapter(
                 }
                 titleText.text = title
                 byLineText.text = byline
-                dateText.toIcon(R.string.fa_calender).also { it.text = it.text.toString()+"  "+ publishedDate  }
+                dateText.toIcon(R.string.fa_calender).also { it.text = "${it.text}  ${publishedDate}" }
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
